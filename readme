@@ -1,0 +1,64 @@
+# LeetCode Problems Solutions
+
+Welcome to the **LeetCode Problems Solutions** repository! This project is dedicated to solving LeetCode problems and sharing the solutions in an organized and structured manner.
+
+## 📁 Project Structure
+
+Each folder in this repository corresponds to a specific LeetCode problem. Inside every folder, you'll find:
+
+1. **README.md**: Contains the problem description, example inputs/outputs, and other relevant details.
+2. **solution.js**: The JavaScript file containing the solution to the problem.
+
+### Example:
+```
+.
+├── Problem-1
+│   ├── README.md
+│   └── solution.js
+├── Problem-2
+│   ├── README.md
+│   └── solution.js
+└── ...
+```
+
+## 🚀 How It Works
+
+- Problems are solved day by day, and their solutions are added to this repository.
+- Each folder is named according to the problem (e.g., `Problem-1`, `Problem-2`, etc.).
+- You can navigate to any problem's folder to view its description and solution.
+
+## 📚 How to Use
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Shahzaib-ur-Rehman/leetcode-problems-solutions.git
+   cd leetcode-problems-solutions
+   ```
+
+2. **Browse Solutions**
+   - Navigate through the folders to explore problems and solutions.
+
+3. **Run the Solutions**
+   - Use Node.js or your preferred JavaScript runtime to execute the `solution.js` files.
+   ```bash
+   node Problem-1/solution.js
+   ```
+
+## 🌟 Contributing
+
+Feel free to contribute by submitting your own solutions or improvements! Fork the repository, make your changes, and submit a pull request. 😊
+
+## 📧 Contact
+
+If you have any questions or suggestions, feel free to reach out:
+- **Author**: Shahzaib ur Rehman
+- **Email**: [shaahzaibrehman@gmail.com](mailto:shaahzaibrehman@gmail.com)
+
+## ⭐ Acknowledgements
+
+- LeetCode platform for providing a wide variety of coding problems.
+- Open-source community for inspiration and collaboration.
+
+---
+
+Happy Coding! 🚀

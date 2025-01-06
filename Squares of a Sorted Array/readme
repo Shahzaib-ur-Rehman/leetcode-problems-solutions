@@ -1,0 +1,75 @@
+# Sorted Squares of a Non-Sorted Array
+
+This project demonstrates how to solve the problem of squaring each number in an array and sorting the results using JavaScript. The solution provided leverages a simple and intuitive approach that calculates the squares and sorts the array in non-decreasing order.
+
+## Problem Statement
+Given an integer array `nums`, return an array of the squares of each number, sorted in non-decreasing order.
+
+### Example:
+#### Input:
+```javascript
+[-7, -3, 2, 3, 11]
+```
+#### Output:
+```javascript
+[4, 9, 9, 49, 121]
+```
+
+### Constraints:
+- 1 <= `nums.length` <= 10⁴
+- -10⁴ <= `nums[i]` <= 10⁴
+
+## Solution
+The solution uses the following steps:
+1. Iterate through the array and compute the square of each number.
+2. Store the squared numbers in a result array.
+3. Sort the result array in non-decreasing order using JavaScript's built-in `sort` method.
+
+## Implementation
+Here is the JavaScript implementation of the solution:
+
+```javascript
+var sortedSquares = function (nums) {
+  let result = [];
+
+  // Step 1: Square each element
+  for (let index = 0; index < nums.length; index++) {
+    const element = Math.abs(nums[index]);
+    result.push(element * element);
+  }
+
+  // Step 2: Sort the squared elements
+  result = result.sort((a, b) => a - b);
+  
+  return result;
+};
+
+// Example usage
+console.log(sortedSquares([-7, -3, 2, 3, 11])); // Output: [4, 9, 9, 49, 121]
+console.log(sortedSquares([-4, -1, 0, 3, 10])); // Output: [0, 1, 9, 16, 100]
+```
+
+## Complexity Analysis
+### Time Complexity:
+- **Squaring the elements**: \( O(n) \)
+- **Sorting the array**: \( O(n \log n) \)
+- **Overall**: \( O(n \log n) \)
+
+### Space Complexity:
+- The `result` array requires \( O(n) \) space.
+- **Overall**: \( O(n) \)
+
+## How to Run
+1. Copy the code above into a JavaScript file (e.g., `sortedSquares.js`).
+2. Run the file using Node.js:
+   ```bash
+   node sortedSquares.js
+   ```
+3. Observe the output in the console.
+
+## Alternative Solutions
+For sorted arrays, the problem can be solved in \( O(n) \) time using the two-pointer technique. However, this solution is tailored for unsorted arrays.
+
+---
+
+Happy Coding! 🚀
