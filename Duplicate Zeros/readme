@@ -1,0 +1,102 @@
+# LeetCode Problem: Duplicate Zeros
+
+## Problem Statement
+Given a fixed-length integer array `arr`, duplicate each occurrence of zero, shifting the remaining elements to the right. Modifications should be made **in-place**, and elements beyond the length of the original array should not be written.
+
+### Constraints:
+- \(1 \leq arr.length \leq 10^4\)
+- \(0 \leq arr[i] \leq 9\)
+
+### Example:
+#### Input:
+```javascript
+[1, 0, 2, 3, 0, 4, 5, 0]
+```
+#### Output:
+```javascript
+[1, 0, 0, 2, 3, 0, 0, 4]
+```
+
+## Solutions
+### Approach 1: In-Place Modification Using Splice
+This approach modifies the array directly while iterating through it. Whenever a zero is encountered, another zero is inserted immediately after, and the last element of the array is removed to maintain the fixed length.
+
+#### Implementation:
+```javascript
+var duplicateZeros = function(arr) {
+    let index = 0;
+    while (index <= arr.length) {
+        if (arr[index] === 0) {
+            arr.splice(index + 1, 0, 0); // Insert a zero
+            arr.pop(); // Remove the last element
+            index += 2; // Skip the newly inserted zero
+        } else {
+            index++;
+        }
+    }
+};
+
+// Test cases
+console.log(duplicateZeros([1, 0, 2, 3, 0, 4, 5, 0])); // Output: [1, 0, 0, 2, 3, 0, 0, 4]
+console.log(duplicateZeros([1, 2, 3, 0, 4, 5, 0])); // Output: [1, 2, 3, 0, 0, 4, 5]
+console.log(duplicateZeros([1, 2, 3])); // Output: [1, 2, 3]
+```
+
+#### Complexity Analysis:
+- **Time Complexity**: \(O(n^2)\), due to the cost of `splice` and `pop` operations inside the loop.
+- **Space Complexity**: \(O(1)\), since no extra array is used.
+
+### Approach 2: Using a Queue (New Array)
+This approach uses a temporary queue to build the result, ensuring the array remains within its original size. The `queue` is populated with elements, duplicating zeros as necessary, and then the input array is updated with values from the `queue`.
+
+#### Implementation:
+```javascript
+var duplicateZeros = function(arr) {
+    let queue = [];
+    for (let index = 0; index < arr.length; index++) {
+        const element = arr[index];
+        if (element === 0) {
+            queue.push(0);
+            queue.push(0);
+        } else {
+            queue.push(element);
+        }
+        if (queue.length > arr.length) {
+            queue.pop();
+        }
+    }
+    for (let index = 0; index < arr.length; index++) {
+        arr[index] = queue[index];
+    }
+};
+
+// Test cases
+duplicateZeros([1, 0, 2, 3, 0, 4, 5, 0]); // Output: [1, 0, 0, 2, 3, 0, 0, 4]
+duplicateZeros([1, 2, 3, 0, 4, 5, 0]); // Output: [1, 2, 3, 0, 0, 4, 5]
+duplicateZeros([1, 2, 3]); // Output: [1, 2, 3]
+```
+
+#### Complexity Analysis:
+- **Time Complexity**: \(O(n)\), since each element is processed once.
+- **Space Complexity**: \(O(n)\), for the temporary queue.
+
+## Comparison of Approaches
+| Approach | Time Complexity | Space Complexity | Pros | Cons |
+|----------|-----------------|------------------|------|------|
+| In-Place | \(O(n^2)\) | \(O(1)\) | No extra memory | Slower for large arrays |
+| Queue    | \(O(n)\)     | \(O(n)\)    | Faster for large arrays | Uses extra space |
+
+## How to Run
+1. Copy any of the implementations into a JavaScript file (e.g., `duplicateZeros.js`).
+2. Run the file using Node.js:
+   ```bash
+   node duplicateZeros.js
+   ```
+3. Test with different inputs to verify the outputs.
+
+## Conclusion
+Both approaches solve the problem, but the choice between them depends on the requirements for time and space efficiency. The in-place approach is memory efficient but slower, while the queue approach is faster but uses extra space.
+
+---
+
+Happy Coding! 🚀
