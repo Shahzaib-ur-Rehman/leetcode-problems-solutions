@@ -1,0 +1,18 @@
+# Two Sum - Solution Explanation
+
+## How I Solved This Problem
+I used the **two-pointer technique** to efficiently find the two numbers that sum up to the target. Since the array is already sorted, I initialized two pointers:
+- `left` at the start of the array.
+- `right` at the end of the array.
+
+I iterated through the array while `left < right` and checked the sum of `numbers[left] + numbers[right]`:
+- If the sum equals the `target`, I returned the 1-based indices `[left + 1, right + 1]`.
+- If the sum is less than the `target`, I moved `left` to the right (`left++`).
+- If the sum is greater than the `target`, I moved `right` to the left (`right--`).
+
+Since the problem guarantees a unique solution, I did not need additional checks.
+
+## Time Complexity
+- **Time Complexity**: `O(n)`, since each element is visited at most once.
+- **Space Complexity**: `O(1)`, as only two extra variables (`left` and `right`) are used.
+
