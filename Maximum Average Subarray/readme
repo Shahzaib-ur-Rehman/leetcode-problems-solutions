@@ -1,0 +1,22 @@
+# Find Maximum Average Subarray - Sliding Window Approach
+
+## How I Solved This Problem
+I used the **Sliding Window technique** to efficiently find the maximum average of any contiguous subarray of length `k`.
+
+### Approach:
+1. **Initialize the first window sum**:
+   - Compute the sum of the first `k` elements (`windowSum`).
+   - Calculate the initial maximum average as `windowSum / k`.
+
+2. **Slide the window across the array**:
+   - For each subsequent index, update the window sum by:
+     - Subtracting the element that is leaving the window (`nums[index - 1]`).
+     - Adding the new element that enters the window (`nums[index + k - 1]`).
+   - Update `maxAverage` whenever a higher average is found.
+
+3. **Return the maximum average** found during the iteration.
+
+## Time Complexity
+- **Time Complexity**: `O(n)`, since each element is processed once.
+- **Space Complexity**: `O(1)`, as only a few variables are used for computation.
+
