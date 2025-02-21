@@ -1,0 +1,25 @@
+# Happy Number Problem Solution - Floyd’s Cycle Detection Approach
+
+## How I Solved This Problem
+I used **Floyd’s Cycle Detection Algorithm** (also known as the Tortoise and Hare approach) to efficiently determine whether a number is happy.
+
+### Approach:
+1. **Compute the Next Number (`getNext`)**:
+   - Extract each digit of the number.
+   - Square each digit and sum them up.
+   - Repeat this process until the number becomes `1` (happy) or starts forming a cycle (unhappy).
+
+2. **Use Two Pointers to Detect Cycles**:
+   - `slowRunner` moves one step at a time.
+   - `fastRunner` moves two steps at a time.
+   - If `fastRunner` reaches `1`, the number is happy.
+   - If `slowRunner` and `fastRunner` meet at any number other than `1`, it means the number is in a cycle and is unhappy.
+
+3. **Handling Edge Cases**:
+   - If the number is `≤ 0`, it cannot be happy.
+   - The algorithm efficiently detects numbers that fall into a repeating cycle.
+
+## Time Complexity
+- **Time Complexity**: `O(log n)`, since each step reduces the number of digits processed.
+- **Space Complexity**: `O(1)`, as only a few variables are used for computation.
+
