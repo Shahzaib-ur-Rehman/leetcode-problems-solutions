@@ -1,0 +1,73 @@
+# Reverse a Singly Linked List
+
+## Problem Statement
+Given the head of a singly linked list, reverse the list and return the new head.
+
+## Approach
+To reverse the linked list, we use an iterative approach. The idea is to traverse the list while modifying the `next` pointers of each node to point to the previous node instead of the next one.
+
+## Solution Explanation
+
+1. **Initialize Pointers:**
+   - `prev`: Initially set to `null`. It will hold the previous node in the reversed list.
+   - `current`: Initially set to `head`. It will be used to traverse the list.
+   - `nextNode`: A temporary variable to store `current.next` before modifying it.
+
+2. **Iterate Through the List:**
+   - Store `current.next` in `nextNode` to keep track of the next node.
+   - Reverse the pointer by setting `current.next = prev`.
+   - Move `prev` to `current` (shift `prev` forward).
+   - Move `current` to `nextNode` (shift `current` forward).
+
+3. **Return the New Head:**
+   - After the loop finishes, `prev` will be pointing to the new head of the reversed list.
+
+## Code Implementation
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    if (!head) return head;
+    
+    let prev = null;
+    let current = head;
+
+    while (current) {
+        let nextNode = current.next; // Store reference to next node
+        current.next = prev; // Reverse the link
+        prev = current; // Move prev forward
+        current = nextNode; // Move current forward
+    }
+
+    return prev; // New head of the reversed list
+};
+```
+
+## Complexity Analysis
+- **Time Complexity:** \(O(n)\) since we traverse the list once.
+- **Space Complexity:** \(O(1)\) as we use only a few extra pointers.
+
+## Example
+**Input:**
+```
+1 -> 2 -> 3 -> 4 -> 5 -> null
+```
+**Output:**
+```
+5 -> 4 -> 3 -> 2 -> 1 -> null
+```
+
+## Summary
+- We iteratively traverse the list, updating pointers to reverse the links.
+- The `prev` pointer helps track the new head of the reversed list.
+- We return `prev` as the final result.
+
