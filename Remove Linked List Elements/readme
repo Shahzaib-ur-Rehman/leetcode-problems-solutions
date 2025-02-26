@@ -1,0 +1,70 @@
+# Remove Elements from a Singly Linked List
+
+## Problem Statement
+Given the head of a singly linked list and an integer `val`, remove all the nodes of the linked list that have `Node.val == val`, and return the new head.
+
+## Solution Explanation
+This JavaScript function `removeElements` efficiently removes all nodes with a given value from a singly linked list. Here's how it works:
+
+### Approach:
+1. **Handle Leading Nodes:**
+   - If the head node contains the target value (`val`), we keep moving `head` to the next node until we find a node with a different value or reach the end.
+
+2. **Traverse the List:**
+   - We use two pointers: `prev` (which starts at the modified `head`) and `current` (which starts at `head.next`).
+   - If `current.val` equals the target value, we update `prev.next` to `current.next`, effectively skipping the node.
+   - Otherwise, we move `prev` forward.
+   - We always move `current` forward in each iteration.
+
+3. **Return the Updated Head:**
+   - Once traversal is complete, we return the updated `head`.
+
+## Code Implementation
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+var removeElements = function (head, val) {
+  while (head !== null && head.val === val) {
+    head = head.next;
+  }
+
+  let prev = head;
+  let current = head?.next;
+
+  while (current) {
+    if (current.val == val) {
+      prev.next = current.next;
+    } else {
+      prev = current;
+    }
+    current = current.next;
+  }
+
+  return head;
+};
+```
+
+## Time Complexity
+- **O(N)**: We traverse the list once, making the solution efficient.
+
+## Space Complexity
+- **O(1)**: We modify the list in place without extra space.
+
+## Edge Cases Considered
+- The list is empty (`head === null`).
+- The value to remove is at the beginning of the list.
+- The value to remove appears multiple times.
+- The value does not exist in the list.
+
+This approach ensures an optimal and efficient way to remove elements from a singly linked list while maintaining the list's structure.
+
