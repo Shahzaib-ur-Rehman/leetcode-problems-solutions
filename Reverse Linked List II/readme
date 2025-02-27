@@ -1,0 +1,164 @@
+# Reverse a Sublist in a Singly Linked List
+
+## Problem Statement
+Given a singly linked list, reverse a portion of the list from position `left` to `right`.
+
+## Solution Approach
+We follow a structured approach to solve the problem in a simple and efficient way:
+
+### Step 1: Define the `Node` and `SinglyLinkedList` Classes
+We start by defining the `Node` class, which represents a single element in the linked list, and the `SinglyLinkedList` class, which manages the list structure.
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push(value) {
+    let newNode = new Node(value);
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+  }
+
+  print() {
+    let list = [];
+    let current = this.head;
+    while (current) {
+      list.push(current.value);
+      current = current.next;
+    }
+    console.log(list);
+  }
+}
+```
+
+### Step 2: Implement the Reverse Function
+We create a helper function `reverse` to reverse a linked list.
+
+```javascript
+const reverse = (head) => {
+  let prev = null;
+  let current = head;
+  while (current) {
+    let nextNode = current.next;
+    current.next = prev;
+    prev = current;
+    current = nextNode;
+  }
+  return prev;
+};
+```
+
+### Step 3: Implement `reverseBetween`
+This function reverses a portion of the list between positions `left` and `right`.
+
+```javascript
+var reverseBetween = function (head, left, right) {
+  if (!head || head?.next === null) {
+    return head;
+  }
+  let leftPrev = null;
+  let leftNode = null;
+  let rightNode = null;
+  let rightNext = null;
+
+  let i = 1;
+  let current = head;
+
+  while (current && i <= right) {
+    if (i < left) {
+      leftPrev = current;
+    }
+    if (i === left) {
+      leftNode = current;
+    }
+
+    if (i === right) {
+      rightNode = current;
+      rightNext = rightNode.next;
+    }
+    current = current.next;
+    i++;
+  }
+  if (rightNode) {
+    rightNode.next = null;
+  }
+
+  rightNode = reverse(leftNode);
+  if (leftPrev) {
+    leftPrev.next = rightNode;
+  } else {
+    head = rightNode;
+  }
+
+  if (leftNode) {
+    leftNode.next = rightNext;
+  }
+  return head;
+};
+```
+
+### Step 4: Test the Implementation
+Create a linked list, add values, and apply `reverseBetween`.
+
+```javascript
+let list = new SinglyLinkedList();
+list.push(1);
+list.push(2);
+list.push(3);
+list.push(4);
+list.push(5);
+
+reverseBetween(list.head, 2, 4);
+list.print();
+```
+
+## Explanation
+1. **Find the left and right nodes**:
+   - Traverse the list to find the `left` and `right` nodes.
+   - Keep track of `leftPrev` (node before left) and `rightNext` (node after right).
+2. **Reverse the sublist**:
+   - Use the `reverse` function to reverse the segment between `left` and `right`.
+3. **Reconnect the reversed sublist**:
+   - Attach the reversed segment back into the original list.
+   - Handle edge cases where `left` is the first node.
+4. **Print the modified list**.
+
+## Time Complexity
+- **O(N)**: We traverse the list twice (once to find nodes and once to reverse).
+- **O(1) Space Complexity**: We modify the list in-place.
+
+## Example
+### Input:
+```
+[1, 2, 3, 4, 5]
+left = 2, right = 4
+```
+### Output:
+```
+[1, 4, 3, 2, 5]
+```
+
+## Summary
+- This approach efficiently reverses a sublist within a linked list.
+- It maintains `O(N)` time complexity with in-place modification.
+- It is easy to understand and implement.
+
+Hope this helps! 🚀
+
