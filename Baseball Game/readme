@@ -1,0 +1,41 @@
+# Baseball Game Points Calculator
+
+## Description
+This JavaScript function, `calPoints`, calculates the total score based on a list of operations from a baseball game. The operations can include:
+- An integer (e.g., `"5"`): Represents a new score.
+- `"C"`: Removes the last valid score.
+- `"D"`: Doubles the last valid score and adds it as a new score.
+- `"+"`: Adds the sum of the last two valid scores as a new score.
+
+## Usage
+The function takes an array of strings as input and returns an integer representing the total score.
+
+## Function Signature
+```javascript
+/**
+ * @param {string[]} operations
+ * @return {number}
+ */
+var calPoints = function (operations) {...}
+```
+
+## Example Usage
+```javascript
+console.log(calPoints(["5", "2", "C", "D", "+"])); // 30
+console.log(calPoints(["5", "-2", "4", "C", "D", "9", "+", "+"])); // 27
+console.log(calPoints(["1", "C"])); // 0
+```
+
+## How I Solved This
+1. **Used a Stack**: The stack helps store valid scores and ensures efficient addition/removal of elements.
+2. **Iterated Over Operations**: Each operation is processed sequentially:
+   - If `"C"` is encountered, the last valid score is removed.
+   - If `"D"` is encountered, the last score is doubled and added to the stack.
+   - If `"+"` is encountered, the sum of the last two scores is added to the stack.
+   - Otherwise, the value is parsed and added to the stack.
+3. **Computed the Total Score**: The final sum of all values in the stack is returned as the result.
+4. **Handled Edge Cases**: Considered scenarios like empty inputs, single operations, and sequences with multiple `"C"`, `"D"`, and `"+"` operations.
+
+## License
+This code is open-source and free to use.
+
